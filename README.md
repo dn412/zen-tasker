@@ -32,14 +32,14 @@ ZenTasker serves as your personal wellness task manager, seamlessly integrating 
 
 # Wireframes
 
-![Alt text](public/images/zen wireframe1.png)
+![Alt text](public/images/zenwireframe1.png)
 
-![Alt text](public/images/zen wireframe2.png)
+![Alt text](public/images/zenwireframe2.png)
 
 
 
 # ERD
 
-![Alt text](public/images/zen ERD.png)
+![Alt text](public/images/zenERD.png)
 
 # Next Steps
