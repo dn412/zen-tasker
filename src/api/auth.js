@@ -6,11 +6,11 @@ export const signUp = (credentials) => {
 		method: 'POST',
 		url: apiUrl + '/sign-up',
 		data: {
-			credentials: {
+
 				email: credentials.email,
 				password: credentials.password,
 				password_confirmation: credentials.passwordConfirmation,
-			},
+	
 		},
 	})
 }
@@ -20,10 +20,10 @@ export const signIn = (credentials) => {
 		url: apiUrl + '/sign-in',
 		method: 'POST',
 		data: {
-			credentials: {
+			
 				email: credentials.email,
 				password: credentials.password,
-			},
+			
 		},
 	})
 }

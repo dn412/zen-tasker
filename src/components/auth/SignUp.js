@@ -28,11 +28,11 @@ const SignUp = (props) => {
 		event.preventDefault()
 
 		const { msgAlert, setUser } = props
-
+        //   const msgAlert = props.msgAlert;
+        //   const setUser = props.setUser
         const credentials = {email, password, passwordConfirmation}
-
+        //  credentials.email, credentials.password
 		signUp(credentials)
-			.then(() => signIn(credentials))
 			.then((res) => setUser(res.data.user))
 			.then(() =>
 				msgAlert({

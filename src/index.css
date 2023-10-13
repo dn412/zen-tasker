@@ -11,3 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.nav-item {
+  padding-top: 0.5rem !important;
+}
+.btn a {
+  text-decoration: none;
+  color: white;
+}
+.homePage {
+  text-align: center;
+}

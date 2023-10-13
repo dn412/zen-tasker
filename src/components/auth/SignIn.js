@@ -29,12 +29,17 @@ const SignIn = (props) => {
 	const onSignIn = (event) => {
 		event.preventDefault()
         console.log('the props', props)
-		const { msgAlert, setUser } = props
+		const { msgAlert, setLoginUser } = props
 
         const credentials = {email, password}
 
 		signIn(credentials)
-			.then((res) => setUser(res.data.user))
+        .then((res) => {
+            setLoginUser(res.data.user);
+            console.log("token", res.data.user);
+            localStorage.setItem("token", res.data.user.token);
+            localStorage.setItem("user", JSON.stringify(res.data.user));
+          })
 			.then(() =>
 				msgAlert({
 					heading: 'Sign In Success',
@@ -42,7 +47,7 @@ const SignIn = (props) => {
 					variant: 'success',
 				})
 			)
-			.then(() => navigate('/'))
+			.then(() => navigate('/tasks-index'))
 			.catch((error) => {
                 setEmail('')
                 setPassword('')
