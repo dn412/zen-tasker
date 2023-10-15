@@ -13,36 +13,46 @@ import SignIn from "./components/auth/SignIn";
 import SignOut from "./components/auth/SignOut";
 import TasksIndex from "./components/tasks/TasksIndex";
 import ChangePassword from "./components/auth/ChangePassword";
- import Profile from "./components/auth/Profile";
- import TaskDetail from "./components/auth/TaskDetail";
-import UpdateTask from './components/auth/UpdateTask'
+import Profile from "./components/auth/Profile";
+import TaskDetail from "./components/tasks/TaskDetail";
+import UpdateTask from "./components/tasks/UpdateTask";
 import jwtDecode from "jwt-decode";
+import About from "./components/auth/About";
+import UserHeader from "./components/shared/UserHeader";
 
 const App = () => {
   const [user, setLoginUser] = useState({});
   const [msgAlerts, setMsgAlerts] = useState([]);
-  const [token, setToken] = useState("");
+  const [loggedInUser, setloggedInUser] = useState("");
   console.log("user in app", user);
   console.log("message alerts", msgAlerts);
 
-  const setUser = () => {
+  // const setUser = () => {
+  //   try {
+  //     const jwt = localStorage.getItem("token");
+  //     const usertoken = jwtDecode(jwt);
+  //     console.log(usertoken);
+  //     const loginuser = JSON.parse(localStorage.getItem("user"));
+  //     setLoginUser(loginuser);
+  //     setloggedInUser(usertoken);
+  //   } catch (ex) {}
+  // };
+  useEffect(() => {
     try {
       const jwt = localStorage.getItem("token");
       const usertoken = jwtDecode(jwt);
+      console.log(usertoken);
       const loginuser = JSON.parse(localStorage.getItem("user"));
       setLoginUser(loginuser);
-      setToken(usertoken);
+      setloggedInUser(usertoken);
     } catch (ex) {}
-  };
-
-  useEffect(() => {
-    setUser();
-    console.log(user);
   }, [setLoginUser]);
 
   const clearUser = () => {
     console.log("clear user ran");
-    setLoginUser(null);
+    setLoginUser({});
+    window.localStorage.clear();
+    window.location.reload();
   };
 
   const deleteAlert = (id) => {
@@ -60,7 +70,11 @@ const App = () => {
 
   return (
     <Fragment>
-      <Header user={user} />
+      {!loggedInUser ? (
+        <Header />
+      ) : (
+        <UserHeader token={loggedInUser} user={user} />
+      )}
       <Routes>
         <Route path="/" element={<Home msgAlert={msgAlert} user={user} />} />
         <Route
@@ -87,11 +101,19 @@ const App = () => {
             </RequireAuth>
           }
         />
-         <Route
+        <Route
           path="/profile"
           element={
             <RequireAuth user={user}>
               <Profile msgAlert={msgAlert} user={user} />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <RequireAuth user={user}>
+              <About msgAlert={msgAlert} user={user} />
             </RequireAuth>
           }
         />
@@ -110,16 +132,12 @@ const App = () => {
               <UpdateTask user={user} msgAlert={msgAlert} />
             </RequireAuth>
           }
-        /> 
+        />
         <Route
           path="/tasks-index"
           element={
             <RequireAuth user={user}>
-              <TasksIndex
-                msgAlert={msgAlert}
-                user={user}
-                setLoginUser={setLoginUser}
-              />
+              <TasksIndex msgAlert={msgAlert} user={user} />
             </RequireAuth>
           }
         />

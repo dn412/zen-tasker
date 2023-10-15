@@ -1,22 +1,24 @@
-import apiUrl from '../apiConfig'
-import axios from 'axios'
+import apiUrl from "../apiConfig";
+import axios from "axios";
+import jwtDecode from "jwt-decode";
+const jwt = localStorage.getItem("token");
 
-export const getAllTasks = (user) => {
-	return axios({
+export const allTasks = (user) => {
+  return axios({
     method: "GET",
     url: apiUrl + "/tasks",
     headers: {
-			Authorization: `Token token=${user?.token}`,
-		},
+      Authorization: jwt,
+    },
   });
-}
+};
 
-export const myTasks = (user) => {
+export const MyTasks = (user) => {
   return axios({
     method: "GET",
     url: apiUrl + `/user/${user._id}`,
     headers: {
-      Authorization: `Token token=${user.token}`,
+      Authorization: user.token,
     },
   });
 };
@@ -26,7 +28,7 @@ export const singleTaskDetail = (task, user) => {
     method: "GET",
     url: apiUrl + `/tasks/${task.id}`,
     headers: {
-      Authorization: `Token token=${user.token}`,
+      Authorization: user.token,
     },
   });
 };

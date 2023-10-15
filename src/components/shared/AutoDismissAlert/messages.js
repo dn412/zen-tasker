@@ -6,12 +6,6 @@ const messages = {
 	signOutSuccess: 'Come back soon!',
 	changePasswordSuccess: 'Password changed successfully!',
 	changePasswordFailure:'Failed to change passwords. Check your old password and try again.',
-	createTaskSuccess: 'Awesome! Task has been created!',
-	creatTaskFailure: 'Oh no! Something went wrong, please try again',
-	indexTasksSuccess: 'All tasks available!',
-	indexTasksFailure: 'Oh no! Something went wrong, please try again',
-	showTasksSuccess: 'All tasks available!',
-	showTasksFailure: 'Oh no! Something went wrong, please try again',
 }
 
 module.exports = messages

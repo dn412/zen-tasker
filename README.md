@@ -8,7 +8,7 @@ ZenTasker serves as your personal wellness task manager, seamlessly integrating 
 
 # Technologies Used
 
-- React 
+- React
 - Bootstrap
 - CSS
 - JavaScript
@@ -22,7 +22,7 @@ ZenTasker serves as your personal wellness task manager, seamlessly integrating 
 - As a user, I want to be able to navigate to the About Page, so I can see what the application is about.
 - As a user, I want the option to register, so that I can start my mindfulness journey.
 - As a user, I want the ability to log in, and log out so that I can have a personalized experience.
-- As a user, I want the authorization to create my own zen task 
+- As a user, I want the authorization to create my own zen task
 - As a user, I want to edit my zen task in case I change my mind.
 - As a user, I want to delete my zen task if I no longer feel the need to complete that specific one.
 - As a user, I want to see a list of zen taks to add, in case there's an idea I have yet to try.
@@ -35,8 +35,6 @@ ZenTasker serves as your personal wellness task manager, seamlessly integrating 
 ![Alt text](public/images/zenwireframe1.png)
 
 ![Alt text](public/images/zenwireframe2.png)
-
-
 
 # ERD
 
