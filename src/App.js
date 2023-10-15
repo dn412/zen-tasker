@@ -136,9 +136,9 @@ const App = () => {
         <Route
           path="/tasks-index"
           element={
-            <RequireAuth user={user}>
+          
               <TasksIndex msgAlert={msgAlert} user={user} />
-            </RequireAuth>
+            
           }
         />
       </Routes>

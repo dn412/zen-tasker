@@ -3,13 +3,11 @@ import axios from "axios";
 import jwtDecode from "jwt-decode";
 const jwt = localStorage.getItem("token");
 
-export const allTasks = (user) => {
+export const allTasks = () => {
   return axios({
     method: "GET",
-    url: apiUrl + "/tasks",
-    headers: {
-      Authorization: jwt,
-    },
+    url: apiUrl + "/alltasks",
+  
   });
 };
 

@@ -20,39 +20,35 @@ const TasksIndex = (props) => {
   };
 
   const { msgAlert, user } = props;
-  const token = localStorage.getItem("token");
-  const userId = JSON.parse(localStorage.getItem("user"));
-  //preventing unauthorised users from accessing the page
-  if (!token && !userId) {
-    window.location.href = "./sign-in";
-  }
-  const [tasks, setTasks] = useState([]);
-  useEffect(() => {
-    allTasks(user)
-      .then((res) => {
-        console.log("tasks===>", res.data.tasks);
-        setTasks(res.data.tasks);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
  
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(()=>{
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/db.json"); // Fetch the JSON file from the public folder
+        setTasks(response.data.tasks);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+  fetchData();
+},[])
   useEffect(() => {
     // Filter the data when the selected category changes
-    let wellnessCat = tasks?.filter((item) => item.category === "General Wellness");
-    let mindCat = tasks?.filter((item) => item.category === "Mindfulness");
-    let stressCat = tasks?.filter((item) => item.category === "Stress Relief");
-    let breathCat = tasks?.filter((item) => item.category === "Breathwork");
+    let wellnessCat = tasks?.find((item) => item.category === "General Wellness Tasks");
+    let mindCat = tasks?.find((item) => item.category === "Mindfulness Tasks");
+    let stressCat = tasks?.find((item) => item.category === "Stress Relief Tasks");
+    let breathCat = tasks?.find((item) => item.category === "Breathwork Tasks");
     setMindfulnessdata(mindCat);
     setWellnessData(wellnessCat);
     setBreathData(breathCat);
     setStressData(stressCat)
   }, [tasks]);
   return (
-    <div className="container-md text-center">
-      {/* <h1>Tasks Index</h1> */}
+    <div className="container-fluid text-center ml-3">
+     
       <br />
       {isButtonVisible && (
         <button className="btn btn-success" onClick={toggleForm}>
@@ -67,61 +63,73 @@ const TasksIndex = (props) => {
       )}
       <br />
       <br />
-      {tasks?.length && (
+      {tasks && (
       <div className="data">
-        <div id="mindfullness" className="cat">
+        <div className="row">
+        <div id="mindfullness" className="col-md-5 cat">
           <h2>Mindfullness</h2>
           <ul>
-            {mindfullnessData?.map((task, index) => (
+            {mindfullnessData?.details?.map((task, index) => (
               <li key={index} className="taskDetails">
-                <Link to={`/task/${task._id}`}>
-                  {/* <b>Task Title:</b> */}
-                  {task.description}
-                </Link>
+              
+                <strong>Title: </strong> {task.title}<br/>
+                  <strong>Description: </strong>{task.description}
+              
                 <br />
               </li>
             ))}
           </ul>
         </div>
-
-        <div id="stress" className="cat">
-          <h2>Stress Relief</h2>
+   
+        <div id="stress-relief" className="col-md-5 cat">
+          <h2>Stress Relief Tasks</h2>
           <ul>
-            {stressData?.map((task, index) => (
+            {stressData?.details?.map((task, index) => (
               <li key={index} className="taskDetails">
-                <Link to={`/task/${task._id}`}>{task.description}</Link>
+                
+                <strong>Title: </strong> {task.title}<br/>
+                  <strong>Description: </strong>{task.description}
+                
                 <br />
               </li>
             ))}
           </ul>
         </div>
+          </div>
           
-        <div id="breath" className="cat">
+          <div className="row">
+        <div id="breath" className="col-md-5 cat">
           <h2>Breathwork</h2>
           <ul>
-            {breathData?.map((task, index) => (
+            {breathData?.details?.map((task, index) => (
               <li key={index} className="taskDetails">
-                <Link to={`/task/${task._id}`}>
-                  {/* <b>Task description:</b> */}
-                  {task.description}
-                </Link>
+              
+                <strong>Title: </strong> {task.title}<br/>
+                  <strong>Description: </strong>{task.description}
+              
                 <br />
               </li>
             ))}
           </ul>
         </div>
-
-        <div id="welless" className="cat">
+   
+        <div id="general-wellness" className="col-md-5 cat">
           <h2>General Wellness</h2>
           <ul>
-            {wellnessData?.map((task, index) => (
+            {stressData?.details?.map((task, index) => (
               <li key={index} className="taskDetails">
-                <Link to={`/task/${task._id}`}>{task.description}</Link>
+                
+                <strong>Title: </strong> {task.title}<br/>
+                  <strong>Description: </strong>{task.description}
+                
                 <br />
               </li>
             ))}
           </ul>
         </div>
+          </div>
+       
+       
       </div>)}
     </div>
   );

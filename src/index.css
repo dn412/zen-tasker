@@ -80,6 +80,7 @@ code {
 list-style-type: none;
   border-bottom: 1px solid grey;
   padding: 5px 10px;
+  /* min-height: 220px; */
 }
 .taskdata-component{
   text-align: center;
