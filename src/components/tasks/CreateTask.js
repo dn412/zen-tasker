@@ -20,7 +20,7 @@ const CreateTask = (props) => {
         method: "post",
         headers: {
           "Content-Type": "application/json",
-          // Authorization: user.token, authorize user
+          Authorization: user.token, 
         },
         body: JSON.stringify({
           task: {
