@@ -18,6 +18,7 @@ ZenTasker serves as your personal wellness task manager, seamlessly integrating 
 
 # User Stories
 
+- As a visitor, when I browse to the app, I want to see a welcoming Home Page and be able to get an idea on what this app is about.
 - As a user, I want to browse the Home Page, and feel a sense of zen by it's layout and user-friendly experience.
 - As a user, I want to be able to navigate to the About Page, so I can see what the application is about.
 - As a user, I want the option to register, so that I can start my mindfulness journey.

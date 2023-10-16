@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-// import RequireAuth from "../components/shared/RequireAuth";
 const TaskDetail = (props) => {
   const { id } = useParams();
   const [taskData, setTaskData] = useState({});
   const navigate = useNavigate();
   const { user } = props;
   useEffect(() => {
+    // retrieve a single task with an axios call
     axios
       .get(`http://localhost:8000/tasks/${id}`, {
         headers: {
@@ -23,6 +23,8 @@ const TaskDetail = (props) => {
       });
   }, [id]);
 
+
+  //delete rask making axios fetch to api
   const deleteTask = (idFromBelow) => {
     axios
       .delete(`http://localhost:8000/tasks/${idFromBelow}`, {
@@ -39,6 +41,7 @@ const TaskDetail = (props) => {
       });
   };
   return (
+    // display the task details
     <div className="taskData-component">
       <h2>Title: {taskData.title}</h2>
       <p>Description: {taskData.description}</p>

@@ -13,6 +13,7 @@ const UpdateTask = (props) => {
   const token = localStorage.getItem("token");
   const { user, msgAlert } = props;
   useEffect(() => {
+    // axios call to the patch request
     axios
       .get(`http://localhost:8000/tasks/${id}`, {
         headers: {
@@ -21,6 +22,7 @@ const UpdateTask = (props) => {
       })
       .then((res) => {
         console.log(res.data);
+        // change states
         setTitle(res.data.task.title);
         setCompleted(res.data.task.completed);
         setDescription(res.data.task.description);
@@ -31,6 +33,7 @@ const UpdateTask = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    // check if user is signed in
     if (token != null) {
       axios
         .patch(`http://localhost:8000/tasks/${id}`, {
@@ -41,7 +44,6 @@ const UpdateTask = (props) => {
           },
         })
 
-        // .then((res) => res.json())
         .then((res) => {
           console.log(res.data);
           navigate(`/profile`);
@@ -52,7 +54,7 @@ const UpdateTask = (props) => {
     } else {
       msgAlert({
         heading: "Please Sign in First",
-        message: messages.signInFailure,
+        message: messages.signInFirst,
         variant: "danger",
       });
     }
@@ -72,9 +74,6 @@ const UpdateTask = (props) => {
             type="text"
           />
         </div>
-
-        
-
         <div className="form-fields">
           <label>Description</label>
           <input
@@ -85,7 +84,7 @@ const UpdateTask = (props) => {
           />
         </div>
 
-        
+
         <div className="form-fields form-fields-check">
           <label>Completed</label>
           <input
@@ -96,7 +95,7 @@ const UpdateTask = (props) => {
           />
         </div>
         <br />
-        {}
+        { }
         <input class="submit-input" type="submit" value="Update" />
       </form>
     </div>

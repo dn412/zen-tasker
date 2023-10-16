@@ -80,7 +80,7 @@ code {
 list-style-type: none;
   border-bottom: 1px solid grey;
   padding: 5px 10px;
-  /* min-height: 220px; */
+height: 130px
 }
 .taskdata-component{
   text-align: center;
@@ -111,4 +111,8 @@ span input[type='checkbox']{
 height: 17px;
 width: 25px;
 margin-top: 6px
+}
+.row{
+  margin-left: 0 !important;
+  padding: 0 20px
 }

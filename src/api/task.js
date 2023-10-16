@@ -1,16 +1,8 @@
 import apiUrl from "../apiConfig";
 import axios from "axios";
-import jwtDecode from "jwt-decode";
-const jwt = localStorage.getItem("token");
 
-export const allTasks = () => {
-  return axios({
-    method: "GET",
-    url: apiUrl + "/alltasks",
-  
-  });
-};
 
+// retrieve all tasks by a single user
 export const MyTasks = (user) => {
   return axios({
     method: "GET",
@@ -21,6 +13,7 @@ export const MyTasks = (user) => {
   });
 };
 
+// get a single task detail
 export const singleTaskDetail = (task, user) => {
   return axios({
     method: "GET",
@@ -30,4 +23,4 @@ export const singleTaskDetail = (task, user) => {
     },
   });
 };
-// axios.get(`http://localhost:8000/tasks/${id}`);
+

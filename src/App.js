@@ -27,17 +27,8 @@ const App = () => {
   console.log("user in app", user);
   console.log("message alerts", msgAlerts);
 
-  // const setUser = () => {
-  //   try {
-  //     const jwt = localStorage.getItem("token");
-  //     const usertoken = jwtDecode(jwt);
-  //     console.log(usertoken);
-  //     const loginuser = JSON.parse(localStorage.getItem("user"));
-  //     setLoginUser(loginuser);
-  //     setloggedInUser(usertoken);
-  //   } catch (ex) {}
-  // };
   useEffect(() => {
+    // retrrive token and user details from localstorage
     try {
       const jwt = localStorage.getItem("token");
       const usertoken = jwtDecode(jwt);
@@ -48,6 +39,7 @@ const App = () => {
     } catch (ex) {}
   }, [setLoginUser]);
 
+// logout function
   const clearUser = () => {
     console.log("clear user ran");
     setLoginUser({});
@@ -70,11 +62,13 @@ const App = () => {
 
   return (
     <Fragment>
+      {/* display header based on if user is signed on not */}
       {!loggedInUser ? (
         <Header />
       ) : (
         <UserHeader token={loggedInUser} user={user} />
       )}
+      {/* enable routing between pages */}
       <Routes>
         <Route path="/" element={<Home msgAlert={msgAlert} user={user} />} />
         <Route
@@ -135,11 +129,7 @@ const App = () => {
         />
         <Route
           path="/tasks-index"
-          element={
-          
-              <TasksIndex msgAlert={msgAlert} user={user} />
-            
-          }
+          element={<TasksIndex msgAlert={msgAlert} user={user} />}
         />
       </Routes>
       {msgAlerts.map((msgAlert) => (

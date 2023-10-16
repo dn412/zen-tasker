@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-// import axios from "axios";
-import messages from "../shared/AutoDismissAlert/messages";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const CreateTask = (props) => {
   const { msgAlert, user } = props;
@@ -10,20 +8,19 @@ const CreateTask = (props) => {
   const [completed, setCompleted] = useState(false);
   const [description, setDescription] = useState("");
   const token = localStorage.getItem("token");
-  const Navigate = useNavigate()  
-
-
-
-
+  const userId = JSON.parse(localStorage.getItem("user"));
+  const Navigate = useNavigate()
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (token != null) {
+    // check if user is logged in
+    if (token && user) {
+      // create a task by fetching the api
       fetch("http://localhost:8000/tasks", {
         method: "post",
         headers: {
           "Content-Type": "application/json",
-          Authorization: user.token,
+          // Authorization: user.token, authorize user
         },
         body: JSON.stringify({
           task: {
@@ -35,20 +32,19 @@ const CreateTask = (props) => {
         }),
       })
         .then((res) => {
-          // console.log(res.data);
           setTitle("");
           setDescription("");
-       
-        }).then(()=>Navigate('/profile'))
+
+        }).then(
+        () => Navigate('/profile'))
         .catch((err) => {
+
           console.log(err);
         });
     } else {
-      msgAlert({
-        heading: "Please Sign in First",
-        message: messages.signInFailure,
-        variant: "danger",
-      });
+      // if user is not logged in, redirect to sign-in page
+      Navigate('/sign-in')
+
     }
   };
   return (
@@ -107,7 +103,7 @@ const CreateTask = (props) => {
           />
         </div>
         <br />
-        {}
+        { }
         <input className="submit-input" type="submit" value="Create" />
       </form>
     </div>
