@@ -2,6 +2,8 @@
 
 ZenTasker serves as your personal wellness task manager, seamlessly integrating mindfulness exercises, positivity trackers, and inspirational content into your daily to-do list. This application transcends the capabilities of a conventional to-do app by marrying mindfulness and productivity strategies to sharpen user focus and optimize task management. Its design seeks to inspire users to practice mindfulness, sustain concentration, and adeptly manage stress.
 
+[Click to view app here!](https://zentasker.netlify.app/)
+
 # Screenshot
 
 ![Alt text](public/images/zentasker.png)
